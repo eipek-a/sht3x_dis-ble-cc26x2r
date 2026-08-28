@@ -53,6 +53,19 @@ The board can run standalone from any USB power source — the firmware is store
 `simple_peripheral.c` is a modified copy of TI's example. The original copyright header is retained; see [License](#license).
 
 ---
+### Changes to `simple_peripheral.c`
+
+Seven additions to TI's original:
+
+- `SP_SENSOR_EVT` application event ID
+- `clkSensor` clock instance and its `argSensor` event data
+- `Util_constructClock` call for `clkSensor` in `SimplePeripheral_init`
+- `i2c_bus_init()` and `SensorProfile_AddService()` calls in `SimplePeripheral_init`
+- `SP_SENSOR_EVT` branch in `SimplePeripheral_clockHandler`
+- `SP_SENSOR_EVT` case in `SimplePeripheral_processAppMsg`
+- `Util_startClock` / `Util_stopClock` on the GAP link established/terminated events
+
+---
 
 ## BLE interface
 
@@ -159,6 +172,8 @@ The SHT3x is driven with command `0x2400` (single-shot, high repeatability, cloc
 
 ## License
 
-The files written for this project are released under the MIT License (see `LICENSE`).
+Files written for this project are released under the MIT License (see `LICENSE`).
 
-`Application/simple_peripheral.c` is a modified version of a Texas Instruments example and remains under TI's BSD 3-Clause license; the original copyright header is preserved in the file.
+`Application/simple_peripheral.c` is a modified Texas Instruments example file.
+It is not covered by the MIT license and remains subject to TI's own license
+terms, reproduced in the header of that file.
