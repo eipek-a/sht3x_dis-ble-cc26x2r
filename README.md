@@ -8,19 +8,6 @@ While a central is connected, readings are taken once per second and pushed to t
 
 
 
-### Wiring
-
-<img width="600" alt="LaunchPad and SHT3x connections" src="https://github.com/.../f0a2dc9a-....png" />
-
-### BLE notifications in nRF Connect
-
-<img width="300" alt="Temperature characteristic notifying" src="https://..." />
-<img width="300" alt="Humidity characteristic notifying" src="https://..." />
-
-### UART output
-
-<img width="600" alt="Serial console showing readings" src="https://..." />
-
 
 
 
@@ -43,6 +30,9 @@ DIO4 and DIO5 are the pins assigned in the bundled `.syscfg`. Any I2C-capable DI
 **Pull-ups:** most SHT3x breakout boards include them. If yours does not, add 4.7 kΩ from SDA and SCL to 3V3. The CC26x2's internal pull-ups are weak (20–40 kΩ) and unreliable with anything longer than a few centimetres of wire.
 
 The board runs standalone from any USB power source once flashed; no debugger connection is required.
+
+<img width="600" alt="LaunchPad and SHT3x connections" src="https://github.com/.../f0a2dc9a-....png" />
+
 
 ---
 
@@ -140,11 +130,20 @@ T = 25.12 C   RH = 41.54 %
 
 ```
 
+### UART output
+
+<img width="600" alt="Serial console showing readings" src="https://..." />
+
 Values only appear while a central is connected, since the sampling clock is stopped otherwise.
 
 ---
 
 ## BLE interface
+
+### BLE notifications in nRF Connect
+
+<img width="300" alt="Temperature characteristic notifying" src="https://..." />
+<img width="300" alt="Humidity characteristic notifying" src="https://..." />
 
 **Service UUID:** `0xFFF7`
 
