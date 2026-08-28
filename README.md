@@ -30,8 +30,7 @@ The board can run standalone from any USB power source — the firmware is store
 ## Software requirements
 
 - Code Composer Studio (Theia or Eclipse)
-- SimpleLink CC13xx/CC26xx SDK **version `8.33.00.16`**
-
+- SimpleLink CC13xx/CC26xx SDK **version `X8.33.00.16`**
 
 
 ---
@@ -50,20 +49,18 @@ The board can run standalone from any USB power source — the firmware is store
 4. In SysConfig, add an I2C instance named `CONFIG_I2C_0` and assign the SDA/SCL pins.
 5. Build and flash.
 
-`simple_peripheral.c` is a modified copy of TI's example. The original copyright header is retained; see [License](#license).
-
----
 ### Changes to `simple_peripheral.c`
 
-Seven additions to TI's original:
+The copy in this repository is TI's example with seven additions. If you would rather
+apply them by hand to a clean copy than overwrite the file:
 
-- `SP_SENSOR_EVT` application event ID
-- `clkSensor` clock instance and its `argSensor` event data
-- `Util_constructClock` call for `clkSensor` in `SimplePeripheral_init`
+- `SP_SENSOR_EVT` application event ID (value `10`, alongside the existing event defines)
+- `clkSensor` clock instance and its `argSensor` event data struct
+- A `Util_constructClock` call for `clkSensor` in `SimplePeripheral_init` (1 s period, not auto-started)
 - `i2c_bus_init()` and `SensorProfile_AddService()` calls in `SimplePeripheral_init`
-- `SP_SENSOR_EVT` branch in `SimplePeripheral_clockHandler`
-- `SP_SENSOR_EVT` case in `SimplePeripheral_processAppMsg`
-- `Util_startClock` / `Util_stopClock` on the GAP link established/terminated events
+- An `SP_SENSOR_EVT` branch in `SimplePeripheral_clockHandler`
+- An `SP_SENSOR_EVT` case in `SimplePeripheral_processAppMsg` — this is where the sensor is actually read
+- `Util_startClock` / `Util_stopClock` on `GAP_LINK_ESTABLISHED_EVENT` and `GAP_LINK_TERMINATED_EVENT`
 
 ---
 
@@ -76,7 +73,7 @@ Seven additions to TI's original:
 | `0xFFF6` | Temperature | Read, Notify | 2 bytes | `int16`, °C × 100, little-endian |
 | `0xFFF8` | Humidity | Read, Notify | 2 bytes | `uint16`, %RH × 100, little-endian |
 
-Both characteristics carry a Client Characteristic User Description descriptor (`"Temperature"` / `"Humidity"`) and a CCCD for enabling notifications.
+Both characteristics carry a Characteristic User Description descriptor (`"Temperature"` / `"Humidity"`) and a CCCD for enabling notifications.
 
 ### Decoding
 
@@ -116,7 +113,7 @@ Temperature is signed to allow sub-zero readings. Humidity is unsigned.
 └──────────────────────────────────────────────┘
 ```
 
-Each layer only depends on the one below it. `sensor.c` has no knowledge of BLE; `i2c_bus.c` has no knowledge of which devices sit on the bus.
+Each layer only depends on the one below it. `sensor.c` has no knowledge of BLE; `i2c_bus.c` has no knowledge of which devices sit on the bus. Adding a second I2C device means adding a driver alongside `sensor.c`, not modifying it.
 
 ### Sampling flow
 
@@ -172,8 +169,6 @@ The SHT3x is driven with command `0x2400` (single-shot, high repeatability, cloc
 
 ## License
 
-Files written for this project are released under the MIT License (see `LICENSE`).
+Files written for this project are released under the MIT License — see `LICENSE`.
 
-`Application/simple_peripheral.c` is a modified Texas Instruments example file.
-It is not covered by the MIT license and remains subject to TI's own license
-terms, reproduced in the header of that file.
+`Application/simple_peripheral.c` is a modified Texas Instruments example file. It is not covered by the MIT license and remains subject to TI's own license terms, which are reproduced in full in the header of that file.
