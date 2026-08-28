@@ -31,8 +31,7 @@ DIO4 and DIO5 are the pins assigned in the bundled `.syscfg`. Any I2C-capable DI
 
 The board runs standalone from any USB power source once flashed; no debugger connection is required.
 
-<img width="600" alt="LaunchPad and SHT3x connections" src="https://github.com/.../f0a2dc9a-....png" />
-
+<img width="650" alt="LaunchPad wired to SHT3x breakout" src="https://github.com/user-attachments/assets/f0a2dc9a-a462-48ff-a6af-a38f314d4e76" />
 
 ---
 
@@ -132,8 +131,7 @@ T = 25.12 C   RH = 41.54 %
 
 ### UART output
 
-<img width="600" alt="Serial console showing readings" src="https://..." />
-
+<img width="650" alt="UART console showing one reading per second" src="https://github.com/user-attachments/assets/d36fdbce-b362-40cc-a2d5-5a64f8291c44" />
 Values only appear while a central is connected, since the sampling clock is stopped otherwise.
 
 ---
@@ -142,8 +140,8 @@ Values only appear while a central is connected, since the sampling clock is sto
 
 ### BLE notifications in nRF Connect
 
-<img width="300" alt="Temperature characteristic notifying" src="https://..." />
-<img width="300" alt="Humidity characteristic notifying" src="https://..." />
+<img width="280" alt="Temperature characteristic" src="https://github.com/user-attachments/assets/774388e6-cd98-49c1-aefa-7e0f8b69c66b" />
+<img width="280" alt="Humidity characteristic" src="https://github.com/user-attachments/assets/72e66f16-a917-47e6-ade2-9503431c248f" />
 
 **Service UUID:** `0xFFF7`
 
