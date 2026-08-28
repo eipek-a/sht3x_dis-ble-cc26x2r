@@ -128,6 +128,7 @@ T = 25.12 C   RH = 41.54 %
 ### UART output
 
 <img width="650" alt="UART console showing one reading per second" src="https://github.com/user-attachments/assets/d36fdbce-b362-40cc-a2d5-5a64f8291c44" />
+
 Values only appear while a central is connected, since the sampling clock is stopped otherwise.
 
 ---
