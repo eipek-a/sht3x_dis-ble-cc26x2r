@@ -3,6 +3,12 @@ Release/
 *.out
 *.map
 *.obj
+*.d
 .settings/
+.launches/
 *.launch
+ti_drivers_config.c
+ti_drivers_config.h
+ti_ble_config.c
+ti_ble_config.h
 syscfg/
