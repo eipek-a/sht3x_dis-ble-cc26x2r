@@ -47,10 +47,6 @@ Application/
 Profiles/
   sensor_gatt_profile.c Attribute table, CCCD handling, notify
   sensor_gatt_profile.h
-sysconfig/
-  simple_peripheral.syscfg
-docs/
-  (screenshots)
 LICENSE
 README.md
 ```
